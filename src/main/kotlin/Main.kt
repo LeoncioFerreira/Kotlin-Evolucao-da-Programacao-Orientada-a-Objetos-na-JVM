@@ -5,6 +5,7 @@
 package sistema.alunos
 
 import sistema.alunos.model.Aluno
+import sistema.alunos.model.CalculadoraDeMedia
 import sistema.alunos.model.Nota
 import sistema.alunos.model.SituacaoAcademica
 
@@ -15,6 +16,7 @@ fun main() {
     )
 
     val nota = Nota(10.0)
+    val nota2 = Nota(7.0)
 
     val situacao = SituacaoAcademica.APROVADO
 
@@ -23,4 +25,7 @@ fun main() {
     println("Nome: ${aluno.nome}")
     println("Nota: ${nota.valor}")
     println("Situação academica: ${situacao}")
+
+    val media = CalculadoraDeMedia
+    media.calcularMedia()
 }
