@@ -8,6 +8,10 @@ import sistema.alunos.model.Aluno
 import sistema.alunos.model.CalculadoraDeMedia
 import sistema.alunos.model.Nota
 import sistema.alunos.model.SituacaoAcademica
+import sistema.alunos.repository.AlunoRepositoryEmMemoria
+import sistema.alunos.service.AlunoJaCadastradoException
+import sistema.alunos.service.AlunoNaoEncontradoException
+import sistema.alunos.service.CadastroAlunoService
 
 fun main() {
     val aluno = Aluno(
@@ -16,7 +20,6 @@ fun main() {
     )
 
     val nota = Nota(10.0)
-    val nota2 = Nota(7.0)
 
     val situacao = SituacaoAcademica.APROVADO
 
@@ -26,6 +29,27 @@ fun main() {
     println("Nota: ${nota.valor}")
     println("Situação academica: ${situacao}")
 
-    val media = CalculadoraDeMedia
-    media.calcularMedia()
+    println()
+    println("--- Cadastro de alunos (repositório em memória) ---")
+
+    val repositorio = AlunoRepositoryEmMemoria()
+    val servico = CadastroAlunoService(repositorio)
+
+    servico.cadastrar(id = "A01", nome = "Maria Souza")
+    servico.cadastrar(id = "A02", nome = "João Pedro")
+
+    println("Alunos cadastrados: ${servico.listarAlunos()}")
+    println("Busca por A01: ${servico.buscarPorId("A01")}")
+
+    try {
+        servico.cadastrar(id = "A01", nome = "Outro Nome")
+    } catch (erro: AlunoJaCadastradoException) {
+        println("Erro esperado: ${erro.message}")
+    }
+
+    try {
+        servico.buscarPorId("INEXISTENTE")
+    } catch (erro: AlunoNaoEncontradoException) {
+        println("Erro esperado: ${erro.message}")
+    }
 }
