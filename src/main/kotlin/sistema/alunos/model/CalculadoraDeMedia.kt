@@ -4,26 +4,23 @@
  */
 package sistema.alunos.model
 
+import sistema.alunos.service.CalculadoraAcademica
+
 class CalculadoraDeMedia(
     val nota: Nota,
     val nota2: Nota,
-) {
+) : CalculadoraAcademica {
     companion object {
         const val MEDIA_APROVACAO = 7.0
         const val MEDIA_RECUPERACAO = 4.0
     }
-    fun calcularMedia (): Double {
-        return (nota.valor + nota2.valor) / 2
-    }
+    override fun calcularMedia(): Double =
+        (nota.valor + nota2.valor) / 2
 
-    fun determinarSituacao(): SituacaoAcademica {
-        val media = calcularMedia()
-        if (media >= MEDIA_APROVACAO){
-            return SituacaoAcademica.APROVADO
-        }else if (media >= MEDIA_RECUPERACAO){
-            return SituacaoAcademica.RECUPERACAO
-        }else{
-            return SituacaoAcademica.REPROVADO
+    override fun determinarSituacao(): SituacaoAcademica =
+        when {
+            calcularMedia() >= MEDIA_APROVACAO -> SituacaoAcademica.APROVADO
+            calcularMedia() >= MEDIA_RECUPERACAO -> SituacaoAcademica.RECUPERACAO
+            else -> SituacaoAcademica.REPROVADO
         }
-    }
 }

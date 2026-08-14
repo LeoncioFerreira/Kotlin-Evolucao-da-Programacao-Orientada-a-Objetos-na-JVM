@@ -4,11 +4,18 @@
  */
 package sistema.alunos.model
 
+import sistema.alunos.service.CalculadoraAcademica
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 class CalculadoraDeMediaTest {
+
+    @Test
+    fun `deve calcular media aritmetica de duas notas`() {
+        val calculadora: CalculadoraAcademica = CalculadoraDeMedia(Nota(6.0), Nota(8.0))
+
+        assertEquals(7.0, calculadora.calcularMedia())
+    }
 
     @Test
     fun `deve mostrar que o aluno foi aprovado`() {

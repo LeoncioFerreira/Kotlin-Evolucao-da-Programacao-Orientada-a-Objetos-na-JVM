@@ -5,7 +5,6 @@
 package sistema.alunos
 
 import sistema.alunos.model.Aluno
-import sistema.alunos.model.CalculadoraDeMedia
 import sistema.alunos.model.Nota
 import sistema.alunos.model.SituacaoAcademica
 import sistema.alunos.repository.AlunoRepositoryEmMemoria
