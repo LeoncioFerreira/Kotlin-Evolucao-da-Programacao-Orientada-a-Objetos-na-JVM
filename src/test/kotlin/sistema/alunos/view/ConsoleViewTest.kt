@@ -5,6 +5,7 @@ import java.io.*
 
 class ConsoleViewTest {
 
+    private val originalOut: PrintStream = System.out
     private lateinit var output: ByteArrayOutputStream
     private lateinit var consoleView: ConsoleView
 
@@ -13,6 +14,11 @@ class ConsoleViewTest {
         output = ByteArrayOutputStream()
         System.setOut(PrintStream(output))
         consoleView = ConsoleView()
+    }
+
+    @AfterTest
+    fun restoreStreams() {
+        System.setOut(originalOut)
     }
 
     @Test
@@ -30,8 +36,9 @@ class ConsoleViewTest {
     @Test
     fun `deve exibir resultado formatado`() {
         consoleView.exibirResultado("Aprovado")
-        assertTrue(output.toString().contains("RESULTADO"))
-        assertTrue(output.toString().contains("Aprovado"))
+        val saida = output.toString()
+        assertTrue(saida.contains("RESULTADO"))
+        assertTrue(saida.contains("Aprovado"))
     }
 
     @Test
@@ -41,5 +48,15 @@ class ConsoleViewTest {
         assertTrue(saida.contains("Menu Teste"))
         assertTrue(saida.contains("1. Opção 1"))
         assertTrue(saida.contains("2. Opção 2"))
+    }
+
+    @Test
+    fun `deve limpar tela sem falhar`() {
+        try {
+            consoleView.limparTela()
+            assertTrue(true) // passou sem erro
+        } catch (e: Exception) {
+            fail("limparTela lançou uma exceção inesperada: $e")
+        }
     }
 }
