@@ -57,15 +57,27 @@ class ConsoleView : Saida {
      */
 
     override fun limparTela() {
-        val comando = if (System.getProperty("os.name").contains("Windows")) {
-            "cls"
-        } else {
-            "clear"
-        }
         try {
-            Runtime.getRuntime().exec(comando).waitFor()
+            val os = System.getProperty("os.name").lowercase()
+            if (os.contains("windows")) {
+                // Windows: usar cmd /c cls
+                ProcessBuilder("cmd", "/c", "cls")
+                    .inheritIO()
+                    .start()
+                    .waitFor()
+            } else {
+                // Linux/macOS: tentar clear
+                val processo = ProcessBuilder("clear")
+                    .inheritIO()
+                    .start()
+                val codigoSaida = processo.waitFor()
+                if (codigoSaida != 0) {
+                    // Fallback: se clear falhar, imprime várias quebras de linha
+                    repeat(50) { println() }
+                }
+            }
         } catch (e: Exception) {
-            // Se não conseguir limpar, apenas exibe quebras de linha
+            // Fallback genérico em caso de erro
             repeat(50) { println() }
         }
     }
