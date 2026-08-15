@@ -1,3 +1,7 @@
+/**
+ * Descrição: Verifica a leitura e a conversão segura de entradas do terminal
+ * Autora: Ramona
+ */
 package sistema.alunos.view
 
 import kotlin.test.*
@@ -55,5 +59,35 @@ class ConsoleInputTest {
         } catch (e: Exception) {
             fail("lerInteiro lançou uma exceção inesperada: $e")
         }
+    }
+
+    @Test
+    fun `deve pedir novamente depois de inteiro invalido`() {
+        System.setIn(ByteArrayInputStream("abc\n42\n".toByteArray()))
+        val consoleInput = ConsoleInput()
+
+        val resultado = consoleInput.lerInteiro("Digite um número: ")
+
+        assertEquals(42, resultado)
+    }
+
+    @Test
+    fun `deve pedir novamente depois de decimal invalido`() {
+        System.setIn(ByteArrayInputStream("abc\n7,5\n".toByteArray()))
+        val consoleInput = ConsoleInput()
+
+        val resultado = consoleInput.lerDecimal("Digite um decimal: ")
+
+        assertEquals(7.5, resultado)
+    }
+
+    @Test
+    fun `deve remover espacos ao ler texto`() {
+        System.setIn(ByteArrayInputStream("  Maria Silva  \n".toByteArray()))
+        val consoleInput = ConsoleInput()
+
+        val resultado = consoleInput.lerTexto("Digite um nome: ")
+
+        assertEquals("Maria Silva", resultado)
     }
 }

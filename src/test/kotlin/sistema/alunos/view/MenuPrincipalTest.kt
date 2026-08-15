@@ -1,3 +1,7 @@
+/**
+ * Descrição: Verifica a apresentação do menu e a delegação das opções ao controlador
+ * Autora: Ramona
+ */
 package sistema.alunos.view
 
 import kotlin.test.*
@@ -44,5 +48,43 @@ class MenuPrincipalTest {
 
         assertTrue(controller.aluno)
         assertTrue(saida.mensagens.any { it.contains("Encerrando") })
+    }
+
+    @Test
+    fun `deve apresentar todas as opcoes do menu`() {
+        val saida = MockSaida()
+        val menu = MenuPrincipal(MockEntrada(listOf(5)), saida, MockController())
+
+        menu.iniciar()
+
+        assertTrue(saida.mensagens.any { it.contains("1. Cadastrar aluno") })
+        assertTrue(saida.mensagens.any { it.contains("2. Registrar avaliação") })
+        assertTrue(saida.mensagens.any { it.contains("3. Consultar relatório") })
+        assertTrue(saida.mensagens.any { it.contains("4. Ver estatísticas") })
+        assertTrue(saida.mensagens.any { it.contains("5. Sair") })
+    }
+
+    @Test
+    fun `deve delegar registro de avaliacao`() {
+        val controller = MockController()
+        MenuPrincipal(MockEntrada(listOf(2, 5)), MockSaida(), controller).iniciar()
+
+        assertTrue(controller.avaliacao)
+    }
+
+    @Test
+    fun `deve delegar consulta de relatorio`() {
+        val controller = MockController()
+        MenuPrincipal(MockEntrada(listOf(3, 5)), MockSaida(), controller).iniciar()
+
+        assertTrue(controller.relatorio)
+    }
+
+    @Test
+    fun `deve delegar exibicao de estatisticas`() {
+        val controller = MockController()
+        MenuPrincipal(MockEntrada(listOf(4, 5)), MockSaida(), controller).iniciar()
+
+        assertTrue(controller.estatisticas)
     }
 }
