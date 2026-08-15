@@ -22,7 +22,7 @@ class AvaliacaoService(
         val jaAvaliado = avaliacoesDoAluno.any { it.disciplina.codigo == disciplina.codigo }
 
         if (jaAvaliado) {
-            throw IllegalStateException("O aluno já possui avaliação para a disciplina ${disciplina.nome}.")
+            throw IllegalStateException("O aluno ja possui avaliacao para a disciplina ${disciplina.nome}.")
         }
 
         // A classe Avaliacao já valida se a lista contém exatamente duas notas no bloco init

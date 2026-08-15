@@ -34,7 +34,7 @@ class AvaliacaoTest {
             Avaliacao(aluno, disciplina, emptyList())
         }
 
-        assertEquals("A avaliação deve possuir exatamente duas notas.", erro.message)
+        assertEquals("A avaliacao deve possuir exatamente duas notas.", erro.message)
     }
 
     @Test
@@ -43,7 +43,7 @@ class AvaliacaoTest {
             Avaliacao(aluno, disciplina, listOf(Nota(7.3)))
         }
 
-        assertEquals("A avaliação deve possuir exatamente duas notas.", erro.message)
+        assertEquals("A avaliacao deve possuir exatamente duas notas.", erro.message)
     }
 
     @Test
@@ -56,6 +56,6 @@ class AvaliacaoTest {
             )
         }
 
-        assertEquals("A avaliação deve possuir exatamente duas notas.", erro.message)
+        assertEquals("A avaliacao deve possuir exatamente duas notas.", erro.message)
     }
 }

@@ -34,7 +34,7 @@ class ConsoleView : Saida {
      */
 
     override fun exibirErro(erro: String) {
-        println("\n❌ [ERRO] $erro\n")
+        println("\n[ERRO] $erro\n")
     }
 
     /**
@@ -46,11 +46,39 @@ class ConsoleView : Saida {
      */
 
     override fun exibirResultado(resultado: String) {
-        println("\n╔════════════════════════════════════════╗")
-        println("║           🎯 RESULTADO                   ║")
-        println("╠════════════════════════════════════════╣")
-        println("║ $resultado".padEnd(40) + "║")
-        println("╚════════════════════════════════════════╝\n")
+        println("\n+========================================+")
+        println("|             RESULTADO                  |")
+        println("+========================================+")
+        resultado.lines()
+            .flatMap(::quebrarLinha)
+            .forEach { linha ->
+                println("| ${linha.padEnd(LARGURA_CONTEUDO)} |")
+            }
+        println("+========================================+\n")
+    }
+
+    private fun quebrarLinha(linha: String): List<String> {
+        if (linha.isEmpty()) return listOf("")
+
+        val linhas = mutableListOf<String>()
+        var restante = linha
+
+        while (restante.length > LARGURA_CONTEUDO) {
+            val ultimoEspaco = restante.lastIndexOf(' ', LARGURA_CONTEUDO)
+            val corte = if (ultimoEspaco > 0) ultimoEspaco else LARGURA_CONTEUDO
+
+            linhas += restante.substring(0, corte)
+            restante = restante
+                .substring(if (ultimoEspaco > 0) corte + 1 else corte)
+                .trimStart()
+        }
+
+        linhas += restante
+        return linhas
+    }
+
+    private companion object {
+        const val LARGURA_CONTEUDO = 38
     }
 
     /**
@@ -95,12 +123,12 @@ class ConsoleView : Saida {
      */
 
     override fun exibirMenu(titulo: String, opcoes: List<String>) {
-        println("\n╔════════════════════════════════════════╗")
-        println("║ $titulo".padEnd(40) + "║")
-        println("╠════════════════════════════════════════╣")
+        println("\n+========================================+")
+        println("| $titulo".padEnd(40) + " |")
+        println("+========================================+")
         opcoes.forEachIndexed { index, opcao ->
-            println("║ ${index + 1}. $opcao".padEnd(40) + "║")
+            println("| ${index + 1}. $opcao".padEnd(40) + " |")
         }
-        println("╚════════════════════════════════════════╝\n")
+        println("+========================================+\n")
     }
 }

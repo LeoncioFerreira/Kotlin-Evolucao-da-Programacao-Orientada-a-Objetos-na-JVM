@@ -11,7 +11,7 @@ data class Avaliacao(
 ) {
     init {
         require(notas.size == 2) {
-            "A avaliação deve possuir exatamente duas notas."
+            "A avaliacao deve possuir exatamente duas notas."
         }
     }
 }

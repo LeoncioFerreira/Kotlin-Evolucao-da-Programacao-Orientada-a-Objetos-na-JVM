@@ -12,7 +12,7 @@ import sistema.alunos.repository.AlunoRepository
  * Autor: Pedro Kauan Cardoso da Silva
  */
 class AlunoJaCadastradoException(id: String) :
-    RuntimeException("Já existe um aluno cadastrado com o identificador '$id'.")
+    RuntimeException("Ja existe um aluno cadastrado com o identificador '$id'.")
 
 /**
  * Descrição: Sinaliza que nenhum aluno foi encontrado para o identificador informado

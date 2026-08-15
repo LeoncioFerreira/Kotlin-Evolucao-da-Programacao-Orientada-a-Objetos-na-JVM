@@ -1,5 +1,5 @@
 /**
- * Descrição: Implementa a leitura e a conversão segura de dados fornecidos pelo terminal
+ * Descricao: Implementa a leitura e a conversao segura de dados fornecidos pelo terminal
  * Autora: Ramona
  */
 package sistema.alunos.view
@@ -12,12 +12,12 @@ class ConsoleInput : Entrada {
             val entrada = readlnOrNull()
 
             if (entrada == null) {
-                println("Entrada encerrada. O programa foi finalizado pelo usuário.")
-                throw IllegalStateException("Entrada encerrada pelo usuário.")
+                println("Entrada encerrada. O programa foi finalizado pelo usuario.")
+                throw IllegalStateException("Entrada encerrada pelo usuario.")
             }
 
             if (entrada.isBlank()) {
-                println("A entrada não pode ficar em branco. Por favor, digite novamente.")
+                println("A entrada nao pode ficar em branco. Por favor, digite novamente.")
                 continue
             }
 
@@ -25,7 +25,7 @@ class ConsoleInput : Entrada {
             if (numero != null) {
                 return numero
             } else {
-                println("Valor inválido. Digite um número inteiro.")
+                println("Valor invalido. Digite um numero inteiro.")
             }
         }
     }
@@ -47,8 +47,8 @@ class ConsoleInput : Entrada {
             val entrada = readlnOrNull()
 
             if (entrada == null) {
-                println("Entrada encerrada. O programa foi finalizado pelo usuário.")
-                throw IllegalStateException("Entrada encerrada pelo usuário.")
+                println("Entrada encerrada. O programa foi finalizado pelo usuario.")
+                throw IllegalStateException("Entrada encerrada pelo usuario.")
             }
 
             if (entrada.isBlank()) {
@@ -66,12 +66,12 @@ class ConsoleInput : Entrada {
             val entrada = readlnOrNull()
 
             if (entrada == null) {
-                println("Entrada encerrada. O programa foi finalizado pelo usuário.")
-                throw IllegalStateException("Entrada encerrada pelo usuário.")
+                println("Entrada encerrada. O programa foi finalizado pelo usuario.")
+                throw IllegalStateException("Entrada encerrada pelo usuario.")
             }
 
             if (entrada.isBlank()) {
-                println("A entrada não pode ficar em branco. Digite novamente.")
+                println("A entrada nao pode ficar em branco. Digite novamente.")
                 continue
             }
 
@@ -81,7 +81,7 @@ class ConsoleInput : Entrada {
             if (numero != null && numero >= 0) {
                 return numero
             } else {
-                println("Valor inválido. Digite um número decimal (ponto ou vírgula).")
+                println("Valor invalido. Digite um numero decimal (ponto ou virgula).")
             }
         }
     }

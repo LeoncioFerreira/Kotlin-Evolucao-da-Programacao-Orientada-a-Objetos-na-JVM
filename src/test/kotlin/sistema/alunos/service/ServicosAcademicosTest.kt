@@ -56,7 +56,7 @@ class ServicosAcademicosTest {
         val exception = assertThrows<IllegalStateException> {
             avaliacaoService.registrarAvaliacao("A01", disciplina, notas)
         }
-        assertTrue(exception.message!!.contains("O aluno já possui avaliação"))
+        assertTrue(exception.message!!.contains("O aluno ja possui avaliacao"))
     }
 
     @Test
@@ -133,7 +133,7 @@ class ServicosAcademicosTest {
             relatorioService.gerarRelatorio("A01")
         }
 
-        assertEquals("Ausência de avaliações para o aluno.", exception.message)
+        assertEquals("Ausencia de avaliacoes para o aluno.", exception.message)
     }
 
     @Test

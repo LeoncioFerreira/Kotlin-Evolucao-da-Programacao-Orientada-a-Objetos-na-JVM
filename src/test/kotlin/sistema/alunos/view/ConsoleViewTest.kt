@@ -46,6 +46,43 @@ class ConsoleViewTest {
     }
 
     @Test
+    fun `deve manter resultados longos e multilinha dentro das bordas`() {
+        consoleView.exibirResultado("Primeira linha\n${"A".repeat(39)}")
+
+        val linhasDeConteudo = output.toString()
+            .lineSequence()
+            .filter { it.startsWith("| ") && !it.contains("RESULTADO") }
+            .toList()
+
+        assertEquals(
+            listOf(
+                "| Primeira linha".padEnd(40) + " |",
+                "| ${"A".repeat(38)} |",
+                "| A".padEnd(40) + " |",
+            ),
+            linhasDeConteudo,
+        )
+    }
+
+    @Test
+    fun `deve quebrar resultado entre palavras quando houver espaco`() {
+        consoleView.exibirResultado("Aluno Maria Silva cadastrado com sucesso!")
+
+        val linhasDeConteudo = output.toString()
+            .lineSequence()
+            .filter { it.startsWith("| ") && !it.contains("RESULTADO") }
+            .toList()
+
+        assertEquals(
+            listOf(
+                "| Aluno Maria Silva cadastrado com".padEnd(40) + " |",
+                "| sucesso!".padEnd(40) + " |",
+            ),
+            linhasDeConteudo,
+        )
+    }
+
+    @Test
     fun `deve exibir menu com opcoes`() {
         consoleView.exibirMenu("Menu Teste", listOf("Opção 1", "Opção 2"))
         val saida = output.toString()
