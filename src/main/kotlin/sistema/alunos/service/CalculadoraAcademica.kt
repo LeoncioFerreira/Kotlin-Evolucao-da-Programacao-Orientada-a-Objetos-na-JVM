@@ -4,11 +4,10 @@
  */
 package sistema.alunos.service
 
-import sistema.alunos.model.Nota
 import sistema.alunos.model.SituacaoAcademica
 
 interface CalculadoraAcademica {
-    fun calcularMedia(notas: List<Nota>): Double
+    fun calcularMedia(): Double
 
-    fun determinarSituacao(media: Double): SituacaoAcademica
+    fun determinarSituacao(): SituacaoAcademica
 }
