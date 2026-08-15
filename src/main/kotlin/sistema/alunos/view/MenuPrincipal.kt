@@ -1,3 +1,7 @@
+/**
+ * Descrição: Apresenta o menu principal e delega as opções escolhidas ao controlador
+ * Autora: Ramona
+ */
 package sistema.alunos.view
 
 /**
@@ -22,7 +26,7 @@ interface Controlador {
  * - Cálculos de média
  * - Acesso ao repositório
  * - Lógica de negócio
- * 
+ *
  * Adaptado para:
  * - Usar exibir() em vez de exibirMensagem()
  * - Usar lerInteiro(min, max) com validação de intervalo
@@ -32,14 +36,14 @@ class MenuPrincipal(
     private val view: Saida,
     private val controller: Controlador
 ) {
-    
+
     fun iniciar() {
         var executando = true
 
         while (executando) {
             exibirMenuPrincipal()
             val opcao = input.lerInteiro("Escolha uma opção: ")
-            
+
             // Valida intervalo (1-5)
             if (opcao !in 1..5) {
                 view.exibir("❌ Erro: Opção inválida. Escolha entre 1 e 5.")
@@ -58,7 +62,7 @@ class MenuPrincipal(
             }
         }
     }
-    
+
     private fun exibirMenuPrincipal() {
         view.exibir("\n╔════════════════════════════════════════╗")
         view.exibir("║   🎓 SISTEMA ACADÊMICO - MENU PRINCIPAL ║")

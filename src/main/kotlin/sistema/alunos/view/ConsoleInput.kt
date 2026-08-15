@@ -1,7 +1,11 @@
+/**
+ * Descrição: Implementa a leitura e a conversão segura de dados fornecidos pelo terminal
+ * Autora: Ramona
+ */
 package sistema.alunos.view
 
 class ConsoleInput : Entrada {
-    
+
     override fun lerInteiro(mensagem: String): Int {
         while (true) {
             print(mensagem)
