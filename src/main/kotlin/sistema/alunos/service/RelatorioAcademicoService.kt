@@ -5,6 +5,7 @@
 package sistema.alunos.service
 
 import sistema.alunos.model.CalculadoraDeMedia
+import sistema.alunos.model.Nota
 import sistema.alunos.repository.AlunoRepository
 import sistema.alunos.repository.AvaliacaoRepository
 
@@ -29,6 +30,7 @@ class RelatorioAcademicoService(
 
             ItemRelatorio(
                 nomeDisciplina = avaliacao.disciplina.nome,
+                notas = avaliacao.notas.toList(),
                 media = mediaDisciplina,
                 situacao = situacao.name
             )
@@ -39,4 +41,9 @@ class RelatorioAcademicoService(
 }
 
 data class RelatorioAcademico(val nomeAluno: String, val disciplinas: List<ItemRelatorio>, val mediaGeral: Double)
-data class ItemRelatorio(val nomeDisciplina: String, val media: Double, val situacao: String)
+data class ItemRelatorio(
+    val nomeDisciplina: String,
+    val notas: List<Nota>,
+    val media: Double,
+    val situacao: String,
+)
