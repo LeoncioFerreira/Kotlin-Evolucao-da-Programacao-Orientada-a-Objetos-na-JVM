@@ -4,13 +4,13 @@
  */
 package sistema.alunos.service
 
+import sistema.alunos.model.CalculadoraDeMedia
 import sistema.alunos.repository.AlunoRepository
 import sistema.alunos.repository.AvaliacaoRepository
 
 class RelatorioAcademicoService(
     private val alunoRepository: AlunoRepository,
-    private val avaliacaoRepository: AvaliacaoRepository,
-    private val calculadora: CalculadoraAcademica
+    private val avaliacaoRepository: AvaliacaoRepository
 ) {
     fun gerarRelatorio(idAluno: String): RelatorioAcademico {
         val aluno = alunoRepository.buscarPorId(idAluno)
@@ -21,10 +21,11 @@ class RelatorioAcademicoService(
             throw IllegalStateException("Ausência de avaliações para o aluno.")
         }
 
-        // map transformando dados puros em DTOs
         val itens = avaliacoes.map { avaliacao ->
-            val mediaDisciplina = calculadora.calcularMedia(avaliacao.notas)
-            val situacao = calculadora.determinarSituacao(mediaDisciplina)
+            // Instancia a calculadora com as duas notas da avaliação atual
+            val calculadora = CalculadoraDeMedia(avaliacao.notas[0], avaliacao.notas[1])
+            val mediaDisciplina = calculadora.calcularMedia()
+            val situacao = calculadora.determinarSituacao()
 
             ItemRelatorio(
                 nomeDisciplina = avaliacao.disciplina.nome,
@@ -33,7 +34,7 @@ class RelatorioAcademicoService(
             )
         }
 
-        return RelatorioAcademico(aluno.nome, itens, avaliacoes.calcularMediaGeral(calculadora))
+        return RelatorioAcademico(aluno.nome, itens, avaliacoes.calcularMediaGeral())
     }
 }
 

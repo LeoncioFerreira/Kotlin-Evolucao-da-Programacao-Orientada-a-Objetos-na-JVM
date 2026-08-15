@@ -12,18 +12,6 @@ import sistema.alunos.model.*
 import sistema.alunos.repository.AlunoRepositoryEmMemoria
 import sistema.alunos.repository.AvaliacaoRepositoryEmMemoria
 
-// Mock da calculadora atualizado com o enum real
-class CalculadoraMock : CalculadoraAcademica {
-    override fun calcularMedia(notas: List<Nota>): Double = notas.map { it.valor }.average()
-
-    override fun determinarSituacao(media: Double): SituacaoAcademica =
-        when {
-            media >= 7.0 -> SituacaoAcademica.APROVADO
-            media >= 5.0 -> SituacaoAcademica.RECUPERACAO
-            else -> SituacaoAcademica.REPROVADO
-        }
-}
-
 class ServicosAcademicosTest {
 
     private lateinit var alunoRepo: AlunoRepositoryEmMemoria
