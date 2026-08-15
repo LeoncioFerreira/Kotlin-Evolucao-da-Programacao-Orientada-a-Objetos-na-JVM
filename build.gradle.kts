@@ -1,5 +1,10 @@
 plugins {
     kotlin("jvm") version "2.3.21"
+    application
+}
+
+application {
+    mainClass.set("sistema.alunos.AplicacaoKt")
 }
 
 group = "sistema.alunos"
@@ -19,4 +24,9 @@ kotlin {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+    jvmArgs("-Dfile.encoding=UTF-8")
 }

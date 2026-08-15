@@ -94,10 +94,10 @@ class AplicacaoIntegracaoTest {
         assertTrue(todasAsSaidas.contains("Aluno Paulo Landim cadastrado com sucesso!"), "Deveria ter cadastrado o aluno")
         
         // Verifica se as notas foram lançadas
-        assertTrue(todasAsSaidas.contains("Avaliação registrada com sucesso para o aluno A001!"), "Deveria ter registrado a avaliação")
+        assertTrue(todasAsSaidas.contains("Avaliacao registrada com sucesso para o aluno A001!"), "Deveria ter registrado a avaliação")
         
         // Verifica se o relatório foi consultado e a média calculada
-        assertTrue(todasAsSaidas.contains("Relatório de Paulo Landim:"), "Deveria ter gerado o relatório")
+        assertTrue(todasAsSaidas.contains("Relatorio de Paulo Landim:"), "Deveria ter gerado o relatório")
         assertTrue(todasAsSaidas.contains("Sair"), "O programa deveria ter recebido o comando de saída")
     }
 }

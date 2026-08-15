@@ -42,11 +42,10 @@ class MenuPrincipal(
 
         while (executando) {
             exibirMenuPrincipal()
-            val opcao = input.lerInteiro("Escolha uma opção: ")
+            val opcao = input.lerInteiro("Escolha uma opcao: ")
 
-            // Valida intervalo (1-5)
             if (opcao !in 1..5) {
-                view.exibir("❌ Erro: Opção inválida. Escolha entre 1 e 5.")
+                view.exibir("[ERRO] Opcao invalida. Escolha entre 1 e 5.")
                 continue
             }
 
@@ -56,7 +55,7 @@ class MenuPrincipal(
                 3 -> controller.consultarRelatorio()
                 4 -> controller.verEstatisticas()
                 5 -> {
-                    view.exibir("Encerrando o sistema... Até logo! 👋")
+                    view.exibir("Encerrando o sistema... Ate logo!")
                     executando = false
                 }
             }
@@ -64,14 +63,14 @@ class MenuPrincipal(
     }
 
     private fun exibirMenuPrincipal() {
-        view.exibir("\n╔════════════════════════════════════════╗")
-        view.exibir("║   🎓 SISTEMA ACADÊMICO - MENU PRINCIPAL ║")
-        view.exibir("╠════════════════════════════════════════╣")
-        view.exibir("║ 1. Cadastrar aluno                     ║")
-        view.exibir("║ 2. Registrar avaliação                 ║")
-        view.exibir("║ 3. Consultar relatório                 ║")
-        view.exibir("║ 4. Ver estatísticas                    ║")
-        view.exibir("║ 5. Sair                                ║")
-        view.exibir("╚════════════════════════════════════════╝")
+        view.exibir("\n+========================================+")
+        view.exibir("|   SISTEMA ACADEMICO - MENU PRINCIPAL   |")
+        view.exibir("+========================================+")
+        view.exibir("| 1. Cadastrar aluno                     |")
+        view.exibir("| 2. Registrar avaliacao                 |")
+        view.exibir("| 3. Consultar relatorio                 |")
+        view.exibir("| 4. Ver estatisticas                    |")
+        view.exibir("| 5. Sair                                |")
+        view.exibir("+========================================+")
     }
 }

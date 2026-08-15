@@ -10,10 +10,10 @@ data class Aluno(
 ) {
     init {
         require(id.isNotBlank()) {
-            "O identificador do aluno não pode estar vazio."
+            "O identificador do aluno nao pode estar vazio."
         }
         require(nome.isNotBlank()) {
-            "O nome do aluno não pode estar vazio."
+            "O nome do aluno nao pode estar vazio."
         }
     }
 }

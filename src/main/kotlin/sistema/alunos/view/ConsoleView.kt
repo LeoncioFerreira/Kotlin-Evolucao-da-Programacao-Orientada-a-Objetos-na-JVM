@@ -34,7 +34,7 @@ class ConsoleView : Saida {
      */
 
     override fun exibirErro(erro: String) {
-        println("\n❌ [ERRO] $erro\n")
+        println("\n[ERRO] $erro\n")
     }
 
     /**
@@ -46,11 +46,11 @@ class ConsoleView : Saida {
      */
 
     override fun exibirResultado(resultado: String) {
-        println("\n╔════════════════════════════════════════╗")
-        println("║           🎯 RESULTADO                   ║")
-        println("╠════════════════════════════════════════╣")
-        println("║ $resultado".padEnd(40) + "║")
-        println("╚════════════════════════════════════════╝\n")
+        println("\n+========================================+")
+        println("|             RESULTADO                  |")
+        println("+========================================+")
+        println("| $resultado".padEnd(40) + " |")
+        println("+========================================+\n")
     }
 
     /**
@@ -95,12 +95,12 @@ class ConsoleView : Saida {
      */
 
     override fun exibirMenu(titulo: String, opcoes: List<String>) {
-        println("\n╔════════════════════════════════════════╗")
-        println("║ $titulo".padEnd(40) + "║")
-        println("╠════════════════════════════════════════╣")
+        println("\n+========================================+")
+        println("| $titulo".padEnd(40) + " |")
+        println("+========================================+")
         opcoes.forEachIndexed { index, opcao ->
-            println("║ ${index + 1}. $opcao".padEnd(40) + "║")
+            println("| ${index + 1}. $opcao".padEnd(40) + " |")
         }
-        println("╚════════════════════════════════════════╝\n")
+        println("+========================================+\n")
     }
 }

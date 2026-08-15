@@ -19,7 +19,7 @@ class RelatorioAcademicoService(
 
         val avaliacoes = avaliacaoRepository.buscarPorIdAluno(idAluno)
         if (avaliacoes.isEmpty()) {
-            throw IllegalStateException("Ausência de avaliações para o aluno.")
+            throw IllegalStateException("Ausencia de avaliacoes para o aluno.")
         }
 
         val itens = avaliacoes.map { avaliacao ->

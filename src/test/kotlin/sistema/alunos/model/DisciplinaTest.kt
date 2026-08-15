@@ -26,7 +26,7 @@ class DisciplinaTest {
             Disciplina(codigo = "", nome = "Paradigmas de Programação")
         }
 
-        assertEquals("O código da disciplina não pode estar vazio.", erro.message)
+        assertEquals("O codigo da disciplina nao pode estar vazio.", erro.message)
     }
 
     @Test
@@ -35,7 +35,7 @@ class DisciplinaTest {
             Disciplina(codigo = "   ", nome = "Paradigmas de Programação")
         }
 
-        assertEquals("O código da disciplina não pode estar vazio.", erro.message)
+        assertEquals("O codigo da disciplina nao pode estar vazio.", erro.message)
     }
 
     @Test
@@ -44,7 +44,7 @@ class DisciplinaTest {
             Disciplina(codigo = "ES0012", nome = "")
         }
 
-        assertEquals("O nome da disciplina não pode estar vazio.", erro.message)
+        assertEquals("O nome da disciplina nao pode estar vazio.", erro.message)
     }
 
     @Test
@@ -53,6 +53,6 @@ class DisciplinaTest {
             Disciplina(codigo = "ES0012", nome = "   ")
         }
 
-        assertEquals("O nome da disciplina não pode estar vazio.", erro.message)
+        assertEquals("O nome da disciplina nao pode estar vazio.", erro.message)
     }
 }

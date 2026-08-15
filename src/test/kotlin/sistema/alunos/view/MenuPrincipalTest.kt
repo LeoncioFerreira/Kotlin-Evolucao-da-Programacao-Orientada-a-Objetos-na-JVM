@@ -58,9 +58,9 @@ class MenuPrincipalTest {
         menu.iniciar()
 
         assertTrue(saida.mensagens.any { it.contains("1. Cadastrar aluno") })
-        assertTrue(saida.mensagens.any { it.contains("2. Registrar avaliação") })
-        assertTrue(saida.mensagens.any { it.contains("3. Consultar relatório") })
-        assertTrue(saida.mensagens.any { it.contains("4. Ver estatísticas") })
+        assertTrue(saida.mensagens.any { it.contains("2. Registrar avaliacao") })
+        assertTrue(saida.mensagens.any { it.contains("3. Consultar relatorio") })
+        assertTrue(saida.mensagens.any { it.contains("4. Ver estatisticas") })
         assertTrue(saida.mensagens.any { it.contains("5. Sair") })
     }
 

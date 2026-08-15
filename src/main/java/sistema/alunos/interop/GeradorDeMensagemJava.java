@@ -1,7 +1,7 @@
 package sistema.alunos.interop;
 
 /**
- * Descrição: Exemplo de classe escrita puramente em Java para demonstrar interoperabilidade
+ * Descricao: Exemplo de classe escrita puramente em Java para demonstrar interoperabilidade
  * Autor: Paulo
  */
 public class GeradorDeMensagemJava {
@@ -13,6 +13,6 @@ public class GeradorDeMensagemJava {
     }
 
     public String gerarMensagemBoasVindas(String nomeAluno) {
-        return "Olá " + nomeAluno + ", seja muito bem-vindo ao sistema! (Mensagem gerada por código Java, assinada por: " + remetente + ")";
+        return "Ola " + nomeAluno + ", seja muito bem-vindo ao sistema! (Mensagem gerada por codigo Java, assinada por: " + remetente + ")";
     }
 }

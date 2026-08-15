@@ -10,10 +10,10 @@ data class Disciplina(
 ) {
     init {
         require(codigo.isNotBlank()) {
-            "O código da disciplina não pode estar vazio."
+            "O codigo da disciplina nao pode estar vazio."
         }
         require(nome.isNotBlank()) {
-            "O nome da disciplina não pode estar vazio."
+            "O nome da disciplina nao pode estar vazio."
         }
     }
 }

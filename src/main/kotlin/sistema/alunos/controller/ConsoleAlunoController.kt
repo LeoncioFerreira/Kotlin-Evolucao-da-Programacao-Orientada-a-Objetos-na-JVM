@@ -26,7 +26,7 @@ class ConsoleAlunoController(
     override fun cadastrarAluno() {
         saida.exibir("\n--- CADASTRO DE ALUNO ---")
         try {
-            val id = entrada.lerTexto("Digite a matrícula do aluno: ")
+            val id = entrada.lerTexto("Digite a matricula do aluno: ")
             val nome = entrada.lerTexto("Digite o nome completo: ")
             
             val aluno = cadastroService.cadastrar(id, nome)
@@ -39,15 +39,15 @@ class ConsoleAlunoController(
     override fun registrarAvaliacao() {
         saida.exibir("\n--- REGISTRO DE NOTAS ---")
         try {
-            val id = entrada.lerTexto("Digite a matrícula do aluno: ")
+            val id = entrada.lerTexto("Digite a matricula do aluno: ")
             
 
-            val codigoDisciplina = entrada.lerTexto("Digite o código da disciplina: ")
+            val codigoDisciplina = entrada.lerTexto("Digite o codigo da disciplina: ")
             val nomeDisciplina = entrada.lerTexto("Digite o nome da disciplina: ")
             val disciplina = Disciplina(codigoDisciplina, nomeDisciplina)
 
-            val nota1 = entrada.lerDecimal("Digite a 1ª nota (0 a 10): ")
-            val nota2 = entrada.lerDecimal("Digite a 2ª nota (0 a 10): ")
+            val nota1 = entrada.lerDecimal("Digite a 1a nota (0 a 10): ")
+            val nota2 = entrada.lerDecimal("Digite a 2a nota (0 a 10): ")
 
             avaliacaoService.registrarAvaliacao(
                 idAluno = id,
@@ -55,31 +55,31 @@ class ConsoleAlunoController(
                 notas = listOf(Nota(nota1), Nota(nota2))
             )
             
-            saida.exibirResultado("Avaliação registrada com sucesso para o aluno $id!")
+            saida.exibirResultado("Avaliacao registrada com sucesso para o aluno $id!")
         } catch (e: Exception) {
-            saida.exibirErro(e.message ?: "Erro desconhecido ao registrar avaliação.")
+            saida.exibirErro(e.message ?: "Erro desconhecido ao registrar avaliacao.")
         }
     }
 
     override fun consultarRelatorio() {
         saida.exibir("\n--- CONSULTA DE BOLETIM ---")
         try {
-            val id = entrada.lerTexto("Digite a matrícula do aluno: ")
+            val id = entrada.lerTexto("Digite a matricula do aluno: ")
             val relatorio = relatorioService.gerarRelatorio(id)
             
             saida.exibirResultado(sistema.alunos.view.ResultadoFormatter.formatarRelatorio(relatorio))
         } catch (e: Exception) {
-            saida.exibirErro(e.message ?: "Erro desconhecido ao gerar relatório.")
+            saida.exibirErro(e.message ?: "Erro desconhecido ao gerar relatorio.")
         }
     }
 
     override fun verEstatisticas() {
-        saida.exibir("\n--- ESTATÍSTICAS DA TURMA ---")
+        saida.exibir("\n--- ESTATISTICAS DA TURMA ---")
         try {
             val estatisticas = estatisticaService.calcularEstatisticas()
             saida.exibirResultado(sistema.alunos.view.ResultadoFormatter.formatarEstatisticas(estatisticas))
         } catch (e: Exception) {
-            saida.exibirErro(e.message ?: "Erro desconhecido ao calcular estatísticas.")
+            saida.exibirErro(e.message ?: "Erro desconhecido ao calcular estatisticas.")
         }
     }
 }
