@@ -1,3 +1,7 @@
+/**
+ * Descrição: Verifica as principais saídas apresentadas no terminal
+ * Autora: Ramona
+ */
 package sistema.alunos.view
 
 import kotlin.test.*
