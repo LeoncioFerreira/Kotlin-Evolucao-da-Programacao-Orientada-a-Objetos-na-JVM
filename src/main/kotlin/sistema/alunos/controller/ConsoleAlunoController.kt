@@ -1,0 +1,85 @@
+/**
+ * Descrição: Implementa o Controlador do sistema acadêmico integrando View e Serviços (Model).
+ * Autor: Paulo
+ */
+package sistema.alunos.controller
+
+import sistema.alunos.model.Disciplina
+import sistema.alunos.model.Nota
+import sistema.alunos.service.AvaliacaoService
+import sistema.alunos.service.CadastroAlunoService
+import sistema.alunos.service.EstatisticaTurmaService
+import sistema.alunos.service.RelatorioAcademicoService
+import sistema.alunos.view.Controlador
+import sistema.alunos.view.Entrada
+import sistema.alunos.view.Saida
+
+class ConsoleAlunoController(
+    private val entrada: Entrada,
+    private val saida: Saida,
+    private val cadastroService: CadastroAlunoService,
+    private val avaliacaoService: AvaliacaoService,
+    private val relatorioService: RelatorioAcademicoService,
+    private val estatisticaService: EstatisticaTurmaService
+) : Controlador {
+
+    override fun cadastrarAluno() {
+        saida.exibir("\n--- CADASTRO DE ALUNO ---")
+        try {
+            val id = entrada.lerTexto("Digite a matrícula do aluno: ")
+            val nome = entrada.lerTexto("Digite o nome completo: ")
+            
+            val aluno = cadastroService.cadastrar(id, nome)
+            saida.exibirResultado("Aluno ${aluno.nome} cadastrado com sucesso!")
+        } catch (e: Exception) {
+            saida.exibirErro(e.message ?: "Erro desconhecido ao cadastrar aluno.")
+        }
+    }
+
+    override fun registrarAvaliacao() {
+        saida.exibir("\n--- REGISTRO DE NOTAS ---")
+        try {
+            val id = entrada.lerTexto("Digite a matrícula do aluno: ")
+            
+
+            val codigoDisciplina = entrada.lerTexto("Digite o código da disciplina: ")
+            val nomeDisciplina = entrada.lerTexto("Digite o nome da disciplina: ")
+            val disciplina = Disciplina(codigoDisciplina, nomeDisciplina)
+
+            val nota1 = entrada.lerDecimal("Digite a 1ª nota (0 a 10): ")
+            val nota2 = entrada.lerDecimal("Digite a 2ª nota (0 a 10): ")
+
+            avaliacaoService.registrarAvaliacao(
+                idAluno = id,
+                disciplina = disciplina,
+                notas = listOf(Nota(nota1), Nota(nota2))
+            )
+            
+            saida.exibirResultado("Avaliação registrada com sucesso para o aluno $id!")
+        } catch (e: Exception) {
+            saida.exibirErro(e.message ?: "Erro desconhecido ao registrar avaliação.")
+        }
+    }
+
+    override fun consultarRelatorio() {
+        saida.exibir("\n--- CONSULTA DE BOLETIM ---")
+        try {
+            val id = entrada.lerTexto("Digite a matrícula do aluno: ")
+            val relatorio = relatorioService.gerarRelatorio(id)
+            
+            saida.exibirResultado(sistema.alunos.view.ResultadoFormatter.formatarRelatorio(relatorio))
+        } catch (e: Exception) {
+            saida.exibirErro(e.message ?: "Erro desconhecido ao gerar relatório.")
+        }
+    }
+
+    override fun verEstatisticas() {
+        saida.exibir("\n--- ESTATÍSTICAS DA TURMA ---")
+        try {
+            val estatisticas = estatisticaService.calcularEstatisticas()
+            saida.exibirResultado(sistema.alunos.view.ResultadoFormatter.formatarEstatisticas(estatisticas))
+        } catch (e: Exception) {
+            saida.exibirErro(e.message ?: "Erro desconhecido ao calcular estatísticas.")
+        }
+    }
+}

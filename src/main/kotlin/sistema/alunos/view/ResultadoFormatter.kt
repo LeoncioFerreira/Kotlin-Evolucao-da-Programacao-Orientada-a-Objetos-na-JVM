@@ -1,30 +1,35 @@
 package sistema.alunos.view
 
+import sistema.alunos.service.EstatisticasTurma
+import sistema.alunos.service.RelatorioAcademico
+
 /**
  * Descrição: Transforma os dados brutos do sistema em texto formatado para a tela.
  * Autor: Paulo
  */
-
-import sistema.alunos.model.Aluno
-import sistema.alunos.model.SituacaoAcademica
-
 object ResultadoFormatter {
 
-    fun formatarBoletim(aluno: Aluno, notas: List<Double>, media: Double, situacao: SituacaoAcademica): String {
+    fun formatarRelatorio(relatorio: RelatorioAcademico): String {
+        val builder = StringBuilder()
+        builder.appendLine("Relatório de ${relatorio.nomeAluno}:")
+        builder.appendLine("Média Geral: ${relatorio.mediaGeral}")
+        
+        relatorio.disciplinas.forEach { item ->
+            val notasStr = item.notas.joinToString(", ") { it.valor.toString() }
+            builder.appendLine("  - ${item.nomeDisciplina}: Notas [$notasStr], Média: ${item.media} (${item.situacao})")
+        }
+        
+        return builder.toString().trimEnd()
+    }
 
-        val notasFormatadas = if (notas.isEmpty()) "Nenhuma nota registrada" else notas.joinToString(", ")
-
-
-        return """
-                ========================================
-                           BOLETIM ACADÊMICO
-                ========================================
-                ID: ${aluno.id}
-                Nome: ${aluno.nome}
-                Notas: $notasFormatadas
-                Média: $media
-                Situação: ${situacao.name}
-                ========================================
-            """.trimIndent()
+    fun formatarEstatisticas(estatisticas: EstatisticasTurma): String {
+        val builder = StringBuilder()
+        builder.appendLine("Média Geral da Turma: ${estatisticas.mediaGeralTurma}")
+        
+        estatisticas.alunosPorSituacao.forEach { (situacao, alunos) ->
+            builder.appendLine("Situação $situacao: ${alunos.size} aluno(s)")
+        }
+        
+        return builder.toString().trimEnd()
     }
 }
