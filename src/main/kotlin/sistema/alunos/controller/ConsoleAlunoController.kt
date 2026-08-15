@@ -28,7 +28,7 @@ class ConsoleAlunoController(
         try {
             val id = entrada.lerTexto("Digite a matricula do aluno: ")
             val nome = entrada.lerTexto("Digite o nome completo: ")
-            
+
             val aluno = cadastroService.cadastrar(id, nome)
             saida.exibirResultado("Aluno ${aluno.nome} cadastrado com sucesso!")
         } catch (e: Exception) {
@@ -40,7 +40,7 @@ class ConsoleAlunoController(
         saida.exibir("\n--- REGISTRO DE NOTAS ---")
         try {
             val id = entrada.lerTexto("Digite a matricula do aluno: ")
-            
+
 
             val codigoDisciplina = entrada.lerTexto("Digite o codigo da disciplina: ")
             val nomeDisciplina = entrada.lerTexto("Digite o nome da disciplina: ")
@@ -54,7 +54,7 @@ class ConsoleAlunoController(
                 disciplina = disciplina,
                 notas = listOf(Nota(nota1), Nota(nota2))
             )
-            
+
             saida.exibirResultado("Avaliacao registrada com sucesso para o aluno $id!")
         } catch (e: Exception) {
             saida.exibirErro(e.message ?: "Erro desconhecido ao registrar avaliacao.")
@@ -66,7 +66,7 @@ class ConsoleAlunoController(
         try {
             val id = entrada.lerTexto("Digite a matricula do aluno: ")
             val relatorio = relatorioService.gerarRelatorio(id)
-            
+
             saida.exibirResultado(sistema.alunos.view.ResultadoFormatter.formatarRelatorio(relatorio))
         } catch (e: Exception) {
             saida.exibirErro(e.message ?: "Erro desconhecido ao gerar relatorio.")

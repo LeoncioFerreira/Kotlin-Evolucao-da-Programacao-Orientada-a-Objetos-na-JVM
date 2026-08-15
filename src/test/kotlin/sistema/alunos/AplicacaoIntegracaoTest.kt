@@ -47,7 +47,7 @@ class AplicacaoIntegracaoTest {
         // 1. Preparação (Setup) dos serviços reais
         val alunoRepo = AlunoRepositoryEmMemoria()
         val avaliacaoRepo = AvaliacaoRepositoryEmMemoria()
-        
+
         val cadastro = CadastroAlunoService(alunoRepo)
         val avaliacao = AvaliacaoService(alunoRepo, avaliacaoRepo)
         val relatorio = RelatorioAcademicoService(alunoRepo, avaliacaoRepo)
@@ -89,13 +89,13 @@ class AplicacaoIntegracaoTest {
 
         // 4. Verificação (Asserts)
         val todasAsSaidas = saidaMock.mensagensExibidas.joinToString("\n")
-        
+
         // Verifica se o aluno foi cadastrado
         assertTrue(todasAsSaidas.contains("Aluno Paulo Landim cadastrado com sucesso!"), "Deveria ter cadastrado o aluno")
-        
+
         // Verifica se as notas foram lançadas
         assertTrue(todasAsSaidas.contains("Avaliacao registrada com sucesso para o aluno A001!"), "Deveria ter registrado a avaliação")
-        
+
         // Verifica se o relatório foi consultado e a média calculada
         assertTrue(todasAsSaidas.contains("Relatorio de Paulo Landim:"), "Deveria ter gerado o relatório")
         assertTrue(todasAsSaidas.contains("Sair"), "O programa deveria ter recebido o comando de saída")

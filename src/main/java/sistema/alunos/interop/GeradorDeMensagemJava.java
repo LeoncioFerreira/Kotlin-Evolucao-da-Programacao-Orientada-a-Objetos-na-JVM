@@ -5,7 +5,7 @@ package sistema.alunos.interop;
  * Autor: Paulo
  */
 public class GeradorDeMensagemJava {
-    
+
     private String remetente;
 
     public GeradorDeMensagemJava(String remetente) {

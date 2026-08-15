@@ -45,7 +45,7 @@ fun main() {
 
     saida.limparTela()
     saida.exibir("Iniciando o Sistema de Gerenciamento de Alunos...")
-    
+
     // Inicia o laço de repetição que vai manter o sistema rodando
     menu.iniciar()
 }
