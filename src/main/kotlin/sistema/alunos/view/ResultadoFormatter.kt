@@ -1,4 +1,4 @@
-package sistema.alunos.sistema.alunos.view
+package sistema.alunos.view
 
 /**
  * Descrição: Transforma os dados brutos do sistema em texto formatado para a tela.
