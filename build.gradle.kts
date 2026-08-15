@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClass.set("sistema.alunos.AplicacaoKt")
+    mainClass.set("sistema.alunos.MainKt")
 }
 
 group = "sistema.alunos"
