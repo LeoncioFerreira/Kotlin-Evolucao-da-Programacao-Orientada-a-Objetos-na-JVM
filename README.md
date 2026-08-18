@@ -94,5 +94,5 @@ Para compilar e executar o Sistema Acadêmico contido neste repositório, certif
 
 ## 5. Artefatos Finais
 
-- **Apresentação de Slides:** [`Slide Paradigmas.pdf`](Slide%20Paradigmas.pdf)
+- **Apresentação de Slides:** [`Slide Paradigmas.pdf`](docs/Slide%20Paradigmas.pdf)
 - **Nossa Pesquisa:** [Wiki do Projeto](https://github.com/LeoncioFerreira/Kotlin-Evolucao-da-Programacao-Orientada-a-Objetos-na-JVM/wiki) (Documentação central de toda a pesquisa).
