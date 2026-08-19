@@ -46,11 +46,11 @@ Para compilar e executar o Sistema Acadêmico contido neste repositório, certif
 2. Execute o projeto utilizando o Gradle Wrapper incluído:
    - **No Linux/macOS:**
      ```bash
-     ./gradlew run
+     ./gradlew run -q --console=plain
      ```
    - **No Windows:**
      ```cmd
-     gradlew.bat run
+     .\gradlew.bat run -q --console=plain
      ```
 
 ---
